@@ -1,2 +1,3 @@
-pub mod footer;
-pub mod header;
+mod layout;
+
+pub use layout::Layout;

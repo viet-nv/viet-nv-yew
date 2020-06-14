@@ -1,10 +1,10 @@
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 
-pub struct Home {}
+pub struct Footer {}
 
 pub enum Msg {}
 
-impl Component for Home {
+impl Component for Footer {
     type Message = Msg;
     type Properties = ();
 
@@ -23,8 +23,7 @@ impl Component for Home {
     fn view(&self) -> Html {
         html! {
             <div>
-                <h1>{"Home Page"}</h1>
-                <p>{"Home Page Content"}</p>
+                {"footer"}
             </div>
         }
     }

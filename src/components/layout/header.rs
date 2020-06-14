@@ -1,10 +1,12 @@
+use crate::app::AppRoutes;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
+use yew_router::components::RouterAnchor;
 
-pub struct Home {}
+pub struct Header {}
 
 pub enum Msg {}
 
-impl Component for Home {
+impl Component for Header {
     type Message = Msg;
     type Properties = ();
 
@@ -23,8 +25,14 @@ impl Component for Home {
     fn view(&self) -> Html {
         html! {
             <div>
-                <h1>{"Home Page"}</h1>
-                <p>{"Home Page Content"}</p>
+                {"header"}
+                <RouterAnchor<AppRoutes> route=AppRoutes::Home>
+                    { "home" }
+                </RouterAnchor<AppRoutes>>
+
+                <RouterAnchor<AppRoutes> route=AppRoutes::Post>
+                    { "post" }
+                </RouterAnchor<AppRoutes>>
             </div>
         }
     }
