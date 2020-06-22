@@ -2,7 +2,6 @@ use crate::components::Layout;
 use crate::pages::home::Home;
 use crate::pages::post::Post;
 
-use log::*;
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 use yew_router::switch::Permissive;
 use yew_router::Switch;
@@ -41,10 +40,9 @@ impl Component for App {
 
     fn view(&self) -> Html {
         html! {
-            <Layout>
+            <Layout class="container m-auto px-4">
                 <YewRouter<AppRoutes>
                     render=YewRouter::render(|switch: AppRoutes| {
-                        info!{"router: {:?}", switch};
                         match switch {
                             AppRoutes::Post => html!{<Post />},
                             AppRoutes::Home => html!{<Home />},
