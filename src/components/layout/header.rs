@@ -1,17 +1,25 @@
 use crate::app::AppRoutes;
-use yew::{html, Component, ComponentLink, Html, ShouldRender};
+use yew::{html, prelude::*, Bridge, Component, ComponentLink, Html, ShouldRender};
 use yew_router::components::RouterAnchor;
+use yew_router::prelude::*;
+use yew_router::service::RouteService;
 
-pub struct Header {}
+pub struct Header {
+    router: Box<dyn Bridge<RouteAgent>>,
+}
 
-pub enum Msg {}
+pub enum Msg {
+    NoOp,
+}
 
 impl Component for Header {
     type Message = Msg;
     type Properties = ();
 
     fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self {}
+        let callback = _link.callback(|_| Msg::NoOp); // TODO use a dispatcher instead.
+        let router = RouteAgent::bridge(callback);
+        Self { router: router }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
@@ -23,6 +31,13 @@ impl Component for Header {
     }
 
     fn view(&self) -> Html {
+        let route_service: RouteService<()> = RouteService::new();
+        let route = route_service.get_route().route;
+
+        // TODO: find the optimize way for highting active route
+        let nav_class = "text-gray-600 hover:text-gray-900 m-4";
+        let nav_class_active = "font-medium text-gray-900 m-4";
+
         html! {
             <div class="flex justify-between items-center h-12 sm:h-16">
                 <div class="block md:hidden cursor-pointer p-3">
@@ -32,26 +47,25 @@ impl Component for Header {
                     <img src="/assets/logo.png" alt="Logo" class="h-5 sm:h-6"/>
                 </RouterAnchor<AppRoutes>>
 
-
                 <div class="flex items-center">
                     <div class="hidden md:flex mr-4">
                         <RouterAnchor<AppRoutes> route=AppRoutes::Home>
-                            <span class="text-gray-600 hover:text-gray-900 m-4">
+                            <span class=if route == "/" {nav_class_active} else {nav_class}>
                                 { "Home" }
                             </span>
                         </RouterAnchor<AppRoutes>>
                         <RouterAnchor<AppRoutes> route=AppRoutes::Post>
-                            <span class="text-gray-600 hover:text-gray-900 m-4">
+                            <span class=if route == "/#/post" {nav_class_active} else {nav_class}>
                                 { "Mini Game" }
                             </span>
                         </RouterAnchor<AppRoutes>>
                         <RouterAnchor<AppRoutes> route=AppRoutes::Post>
-                            <span class="text-gray-600 hover:text-gray-900 m-4">
+                            <span class=nav_class>
                                 { "CV" }
                             </span>
                         </RouterAnchor<AppRoutes>>
                         <RouterAnchor<AppRoutes> route=AppRoutes::Post>
-                            <span class="text-gray-600 hover:text-gray-900 m-4">
+                            <span class=nav_class>
                                 { "About" }
                             </span>
                         </RouterAnchor<AppRoutes>>
