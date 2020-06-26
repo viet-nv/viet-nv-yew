@@ -34,7 +34,8 @@ impl Component for Header {
         let route_service: RouteService<()> = RouteService::new();
         let route = route_service.get_route().route;
 
-        // TODO: find the optimize way for highting active route
+        let current_route = AppRoutes::switch(Route::new_no_state(&route)).unwrap();
+
         let nav_class = "text-gray-600 hover:text-gray-900 m-4";
         let nav_class_active = "font-medium text-gray-900 m-4";
 
@@ -50,12 +51,12 @@ impl Component for Header {
                 <div class="flex items-center">
                     <div class="hidden md:flex mr-4">
                         <RouterAnchor<AppRoutes> route=AppRoutes::Home>
-                            <span class=if route == "/" {nav_class_active} else {nav_class}>
+                            <span class=if current_route == AppRoutes::Home {nav_class_active} else {nav_class}>
                                 { "Home" }
                             </span>
                         </RouterAnchor<AppRoutes>>
                         <RouterAnchor<AppRoutes> route=AppRoutes::Post>
-                            <span class=if route == "/#/post" {nav_class_active} else {nav_class}>
+                            <span class=if current_route == AppRoutes::Post {nav_class_active} else {nav_class}>
                                 { "Mini Game" }
                             </span>
                         </RouterAnchor<AppRoutes>>

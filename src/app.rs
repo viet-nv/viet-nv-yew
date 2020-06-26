@@ -12,7 +12,7 @@ pub struct App {}
 pub enum Msg {}
 
 /// App routes
-#[derive(Switch, Debug, Clone)]
+#[derive(Switch, Debug, Clone, PartialEq)]
 pub enum AppRoutes {
     #[to = "/#/post"]
     Post,
