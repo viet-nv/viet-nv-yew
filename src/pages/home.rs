@@ -22,7 +22,7 @@ impl Component for Home {
 
     fn view(&self) -> Html {
         html! {
-            <div>
+            <div class="min-h-screen">
                 <h1>{"Home Page"}</h1>
                 <p>{"Home Page Content"}</p>
             </div>

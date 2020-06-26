@@ -44,13 +44,13 @@ impl Component for Layout {
 
     fn view(&self) -> Html {
         html! {
-            <div class=Classes::from(self.props.class.clone())>
+            <>
                 <Header />
-                <div class="border">
+                <div class=Classes::from(self.props.class.clone())>
                     { self.props.children.render() }
                 </div>
                 <Footer />
-            </div>
+            </>
         }
     }
 }

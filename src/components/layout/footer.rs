@@ -22,8 +22,8 @@ impl Component for Footer {
 
     fn view(&self) -> Html {
         html! {
-            <div>
-                {"footer"}
+            <div class="h-16 border flex items-center justify-around">
+                {"Copyright viet-nv © 2020"}
             </div>
         }
     }
