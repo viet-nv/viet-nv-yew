@@ -1,11 +1,13 @@
 use crate::app::AppRoutes;
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
 use yew::{html, prelude::*, Bridge, Component, ComponentLink, Html, ShouldRender};
 use yew_router::components::RouterAnchor;
 use yew_router::prelude::*;
 use yew_router::service::RouteService;
 
 pub struct Header {
-    router: Box<dyn Bridge<RouteAgent>>,
+    _router: Box<dyn Bridge<RouteAgent>>,
 }
 
 pub enum Msg {
@@ -19,7 +21,29 @@ impl Component for Header {
     fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
         let callback = _link.callback(|_| Msg::NoOp); // TODO use a dispatcher instead.
         let router = RouteAgent::bridge(callback);
-        Self { router: router }
+
+        // TODO: using state to check scroll
+        let window: web_sys::Window = web_sys::window().expect("window not available");
+        let closure = Closure::wrap(Box::new(move |_: web_sys::MouseScrollEvent| {
+            let window: web_sys::Window = web_sys::window().expect("window not available");
+            let document = web_sys::window().unwrap().document().unwrap();
+            let header = document.get_element_by_id("header").unwrap();
+            let scroll_y = window.scroll_y();
+            let scroll_y = match scroll_y.ok() {
+                Some(number) => number,
+                None => 0.0,
+            };
+            if (scroll_y > 0.0) {
+                header.class_list().add_1("shadow");
+            } else {
+                header.class_list().remove_1("shadow");
+            }
+        }) as Box<dyn FnMut(_)>);
+
+        window.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
+        closure.forget();
+
+        Self { _router: router }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
@@ -40,7 +64,7 @@ impl Component for Header {
         let nav_class_active = "font-medium text-gray-900 m-4";
 
         html! {
-            <div class="sticky top-0 bg-white shadow">
+            <div class="sticky top-0 bg-white" id="header">
                 <div class="container m-auto px-4 flex justify-between items-center h-12 sm:h-16">
                     <div class="block md:hidden cursor-pointer p-3">
                         <svg class="fill-current w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>{"Menu"}</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
