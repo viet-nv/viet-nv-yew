@@ -22,7 +22,6 @@ impl Component for Header {
         let callback = _link.callback(|_| Msg::NoOp); // TODO use a dispatcher instead.
         let router = RouteAgent::bridge(callback);
 
-        // TODO: using state to check scroll
         let window: web_sys::Window = web_sys::window().expect("window not available");
         let closure = Closure::wrap(Box::new(move |_: web_sys::MouseScrollEvent| {
             let window: web_sys::Window = web_sys::window().expect("window not available");
@@ -33,14 +32,16 @@ impl Component for Header {
                 Some(number) => number,
                 None => 0.0,
             };
-            if (scroll_y > 0.0) {
-                header.class_list().add_1("shadow");
+            if scroll_y > 0.0 {
+                header.class_list().add_1("shadow").unwrap();
             } else {
-                header.class_list().remove_1("shadow");
+                header.class_list().remove_1("shadow").unwrap();
             }
         }) as Box<dyn FnMut(_)>);
 
-        window.add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref());
+        window
+            .add_event_listener_with_callback("scroll", closure.as_ref().unchecked_ref())
+            .unwrap();
         closure.forget();
 
         Self { _router: router }

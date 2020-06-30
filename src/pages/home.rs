@@ -1,3 +1,4 @@
+use crate::components::Profile;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 
 pub struct Home {}
@@ -23,7 +24,7 @@ impl Component for Home {
     fn view(&self) -> Html {
         html! {
             <div class="min-h-screen">
-                <h1>{"Home Page"}</h1>
+                <Profile />
                 <p>{"Home Page Content"}</p>
             </div>
         }
