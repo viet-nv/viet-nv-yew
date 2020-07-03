@@ -71,10 +71,10 @@ impl Component for Profile {
                 </div>
 
                 <div class="sm:pl-8 sm:flex-1">
-                    <h1 class="mb-3 text-2xl sm:text-2xl md:text-3xl">{"Hi! I'm "}<b>{"Soleil"}</b></h1>
-                    <p class="mb-2 italic">{"Bug is like a wind, always by my side."}</p>
-                    <p>{"Chào mừng bạn đã đến với căn cứ nhỏ của tôi. Tôi là Việt - Nguyễn Văn Việt. Bạn có thể gọi tôi là Soleil (hoặc Lielos nhé :D)"}</p>
-                    <p class="mb-4">{"Đã đến đây rồi thì hãy ngó qua một chút xem tôi có gì nhé! ;)"}</p>
+                    <h1 class="mb-3 text-2xl sm:text-2xl md:text-3xl">{"Hi! I'm "}<b>{"Soleil 😎"}</b></h1>
+                    <p class="mb-2">{"🐞"}<span class="italic">{"Bug is like a wind"}</span>{"🌪"}<span class="italic">{", always by my side."}</span></p>
+                    <p>{"Chào mừng bạn đã đến với căn cứ nhỏ của tôi. Tôi là Việt - Nguyễn Văn Việt. Bạn có thể gọi tôi là Soleil (hoặc Lielos cũng được nhé 😄)"}</p>
+                    <p class="mb-4">{"Đã đến đây rồi thì hãy ngó qua một chút xem tôi có gì nhé! 😉"}</p>
                     <div class="flex justify-center sm:justify-start">
                         // Facebook
                         <a class="mr-5" href="https://www.facebook.com/lielos13/" target="_blank" rel="noopener noreferrer">
