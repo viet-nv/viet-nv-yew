@@ -54,14 +54,14 @@ impl Component for Profile {
     fn view(&self) -> Html {
         html! {
             <div class=Classes::from("block sm:flex sm:items-center
-                                      text-center sm:text-left 
+                                      text-center sm:text-left
                                       max-w-full m-auto
                                       px-5 sm:px-3
                                       py-16 md:py-20 lg:py-24"
                                     ).extend(self.wrapper_style.clone())>
                 <div class="w-40 md:w-56
-                            h-40 md:h-56 
-                            p-4 md:p-6 border rounded-full 
+                            h-40 md:h-56
+                            p-4 md:p-6 border rounded-full
                             m-auto mb-5 sm:m-0">
                     <img
                       src="/assets/avatar.png"
@@ -88,7 +88,7 @@ impl Component for Profile {
 
                         // LinkedIn
                         <a class="mr-5" href="https://www.linkedin.com/in/nguy%E1%BB%85n-v%C4%83n-vi%E1%BB%87t-491112165/" target="_blank" rel="noopener noreferrer">
-                            <svg viewBox="0 0 18 18" height="1.5rem" width="1.5rem"><path d="M15.4,1.5H2.6C2,1.5,1.5,2,1.5,2.6v12.8c0,0.6,0.5,1.1,1.1,1.1h12.8c0.6,0,1.1-0.5,1.1-1.1V2.6C16.5,2,16,1.5,15.4,1.5z M3.8,7.1H6v7.2H3.8V7.1z M4.9,6.1c-0.7,0-1.3-0.6-1.3-1.3c0-0.7,0.6-1.3,1.3-1.3c0.7,0,1.3,0.6,1.3,1.3C6.2,5.6,5.6,6.1,4.9,6.1z M14.5,14.3h-2.3v-3.5c0-0.8,0-1.9-1.2-1.9c-1.2,0-1.4,0.9-1.4,1.8v3.5H7.4V7.1h2.2v1h0c0.3-0.6,1-1.2,2.1-1.2 c2.3,0,2.7,1.5,2.7,3.4V14.3z"></path></svg>
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1.5rem" width="1.5rem" xmlns="http://www.w3.org/2000/svg"><path d="M417.2 64H96.8C79.3 64 64 76.6 64 93.9V415c0 17.4 15.3 32.9 32.8 32.9h320.3c17.6 0 30.8-15.6 30.8-32.9V93.9C448 76.6 434.7 64 417.2 64zM183 384h-55V213h55v171zm-25.6-197h-.4c-17.6 0-29-13.1-29-29.5 0-16.7 11.7-29.5 29.7-29.5s29 12.7 29.4 29.5c0 16.4-11.4 29.5-29.7 29.5zM384 384h-55v-93.5c0-22.4-8-37.7-27.9-37.7-15.2 0-24.2 10.3-28.2 20.3-1.5 3.6-1.9 8.5-1.9 13.5V384h-55V213h55v23.8c8-11.4 20.5-27.8 49.6-27.8 36.1 0 63.4 23.8 63.4 75.1V384z"></path></svg>
                         </a>
 
                         // Github
